@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gerador de Referências ABNT</title>
-<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27192%27%20height%3D%27192%27%20viewBox%3D%270%200%20120%20120%27%3E%3Crect%20width%3D%27120%27%20height%3D%27120%27%20rx%3D%2728%27%20fill%3D%27%231E3A8A%27%2F%3E%3Cg%20transform%3D%27translate%2815%2010%29%20scale%28.75%29%27%20fill%3D%27none%27%20stroke%3D%27%23fff%27%20stroke-width%3D%276%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M34%2012H66L84%2030V72H34Z%27%2F%3E%3Cpath%20d%3D%27M66%2012V30H84%27%2F%3E%3Cpath%20d%3D%27M44%2042H74M44%2052H74M44%2062H64%27%20stroke-width%3D%275%27%2F%3E%3Cpath%20d%3D%27M10%2078Q40%2078%2060%20100Q80%2078%20110%2078%27%2F%3E%3Cpath%20d%3D%27M16%2089Q42%2087%2060%20107Q78%2087%20104%2089%27%20stroke%3D%27%2393C5FD%27%20stroke-width%3D%275%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#F8FAFC">
@@ -90,7 +90,7 @@ h3.grp{grid-column:1/-1;margin:24px 0 0;padding-bottom:6px;font-size:12px;font-w
 .menu button:last-child{background:var(--ac);color:#fff;border-radius:8px;margin-left:8px;border-bottom:0}
 .burger{display:none;margin:0;background:none;border:0;color:var(--ac);font-size:26px;padding:2px 10px}
 .burger:hover{background:none;filter:none}
-@media (max-width:860px){.burger{display:block}.menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--card);border-bottom:1px solid var(--bd);padding:6px 16px 12px}.menu.open{display:flex}.menu button{text-align:left;border-bottom:1px solid var(--bd);padding:12px 4px}.menu button:last-child{margin:10px 0 0;text-align:center}}
+@media (max-width:760px){.burger{display:block}.menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--card);border-bottom:1px solid var(--bd);padding:6px 16px 12px}.menu.open{display:flex}.menu button{text-align:left;border-bottom:1px solid var(--bd);padding:12px 4px}.menu button:last-child{margin:10px 0 0;text-align:center}}
 main{max-width:1000px}
 .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;padding:44px 4px 28px}
 .hero h1{font-size:clamp(32px,6vw,48px);line-height:1.08;margin:0 0 14px;color:#0F172A}
@@ -119,7 +119,7 @@ main{max-width:1000px}
 .burger[aria-expanded="true"] i:nth-child(2){opacity:0}
 .burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 .scrim{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:7}
-@media (max-width:860px){
+@media (max-width:760px){
 .burger{display:grid}
 .menu{top:calc(100% + 8px);left:12px;right:12px;padding:8px;border:1px solid var(--bd);border-radius:14px;box-shadow:0 16px 40px rgba(15,23,42,.28)}
 .menu button{border-bottom:0;border-radius:8px;padding:12px}
@@ -185,6 +185,24 @@ body{overscroll-behavior-y:none}
 :root[data-theme="dark"] .aviso.ok{color:#6EE7B7}
 :root[data-theme="dark"] .aviso.warn{color:#FCD34D}
 .falta{border-color:#D97706!important}
+.seg{display:flex;gap:6px;background:var(--acb);border:1.5px solid var(--bd);border-radius:12px;padding:4px;margin:12px 0 14px}
+.seg button{flex:1;margin:0;background:none;color:var(--mut);border:0;border-radius:9px;padding:10px 6px;font-size:14px}
+.seg button:hover{background:none;filter:none}
+.seg button.on,.seg button.on:hover{background:var(--ac);color:#fff}
+.obra{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border:1.5px solid var(--bd);border-radius:10px;background:var(--acb);font-size:14px;overflow-wrap:anywhere}
+.obra button{margin:0;padding:6px 10px;font-size:13px}
+details{margin:12px 0}
+summary{cursor:pointer;color:var(--ac);font-weight:600;font-size:14px}
+#pgGerar{max-width:760px;margin:0 auto}
+.n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ac);color:#fff;font-size:13px;font-weight:700;flex:none}
+.seg{flex-wrap:wrap}
+.seg button{flex:1 1 30%}
+.reader{max-height:46vh;overflow:auto;border:1.5px solid var(--bd);border-radius:10px;padding:14px;background:var(--card);font:15px/1.7 Georgia,"Times New Roman",serif;-webkit-user-select:text;user-select:text;-webkit-overflow-scrolling:touch}
+.reader p{margin:0 0 12px}
+.pgn{font:600 11px system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ac);margin:10px 0 6px;-webkit-user-select:none;user-select:none}
+.reader ::selection{background:#BFDBFE;color:#0F172A}
+::highlight(cit){background:#FDE68A;color:#1C2321}
+#msg{margin-bottom:2px}
 </style>
 </head>
 <body>
@@ -236,21 +254,110 @@ body{overscroll-behavior-y:none}
 </div>
 </div>
 
-<section class="card">
-<h2>Anexar documento</h2>
+<div id="pgGerar">
+<textarea id="texto" hidden></textarea>
+
+<section class="card" id="stAnexo">
+<h2><span class="n">1</span>Anexe o arquivo</h2>
+<p class="note">PDF, TXT ou foto da folha de rosto. O site lê o texto e deixa tudo pronto nos passos abaixo.</p>
 <input type="file" id="arq" accept=".pdf,.txt,image/*">
-<button id="analisar">Analisar documento</button>
+<button id="analisar" type="button">Analisar documento</button> <button class="alt" id="semArq" type="button">Prefiro preencher à mão</button>
 <div id="msg"></div>
 </section>
 
-<section class="card">
-<h2>Referência</h2>
-<div class="tag" style="margin-top:0">Resultado</div>
-<div class="out" id="ref">Preencha os dados abaixo.</div>
+<section class="card" id="stOpcoes">
+<h2><span class="n">2</span>O que você quer montar?</h2>
+<div class="seg" id="segOp">
+<button type="button" data-p="pDir" class="on">Citação direta</button>
+<button type="button" data-p="pInd">Citação indireta</button>
+<button type="button" data-p="pAp">Citação de citação</button>
+<button type="button" data-p="pNota">Nota de rodapé</button>
+<button type="button" data-p="pFich">Fichamento</button>
+</div>
+
+<div class="pane" id="pDir">
+<div class="obra"><span id="citTxt"></span><button class="alt" type="button" id="citEdita">Editar dados da obra</button></div>
+<p class="note" style="margin-top:12px"><b>Selecione o trecho no texto abaixo.</b> Ele fica marcado em amarelo e a citação aparece pronta, mesmo depois de soltar o dedo.</p>
+<div class="reader" id="leitor"></div>
+<div class="note" id="leitorMsg"></div>
+<div class="tag">Citação pronta</div>
+<div class="out" id="direta"></div>
+<button class="alt" data-copy="direta">Copiar citação direta</button>
+<p class="note">Até 3 linhas: entre aspas, no parágrafo. Acima disso: bloco recuado 4 cm, fonte menor e sem aspas (o site usa cerca de 40 palavras como limite).</p>
+<h3 class="grp" style="margin-top:22px">Ajustes (opcional)</h3>
+<label>Trecho escolhido (você também pode colar ou corrigir aqui)</label>
+<textarea id="trecho" style="min-height:80px" placeholder="O trecho selecionado aparece aqui"></textarea>
+<div class="row">
+<div><label>Página</label><input id="pag" placeholder="ex.: 45"></div>
+<div><label>Observação</label><select id="obs"><option value="">Nenhuma</option><option>grifo nosso</option><option>grifo do autor</option><option>tradução nossa</option></select></div>
+</div>
+</div>
+
+<div class="pane" id="pInd" hidden>
+<p class="note">Use quando você explica a ideia do autor com suas palavras. Não leva página. Troque o texto entre colchetes pela sua paráfrase.</p>
+<div class="out" id="indireta"></div>
+<button class="alt" data-copy="indireta">Copiar citação indireta</button>
+</div>
+
+<div class="pane" id="pAp" hidden>
+<p class="note">Use só quando não foi possível ler o original. Na lista de referências entra apenas a obra que você consultou (a que está nos dados da obra).</p>
+<div class="row">
+<div><label>Autor citado (que você não leu)</label><input id="apA"></div>
+<div><label>Ano da obra citada</label><input id="apY"></div>
+<div><label>Página na obra citada</label><input id="apP"></div>
+<div><label>Página na obra que você leu</label><input id="apC"></div>
+</div>
+<div class="out" id="apud">Preencha o autor citado para gerar.</div>
+<button class="alt" data-copy="apud">Copiar</button>
+</div>
+
+<div class="pane" id="pNota" hidden>
+<label>Expressão</label>
+<select id="nota">
+<option value="">Escolha…</option>
+<option value="comp">1ª citação (referência completa)</option>
+<option value="ibid">Ibidem (mesma obra da nota anterior)</option>
+<option value="idem">Idem (mesmo autor, outra obra)</option>
+<option value="op">Op. cit. (obra já citada)</option>
+<option value="loc">Loc. cit. (mesma página já citada)</option>
+<option value="pas">Passim (várias passagens)</option>
+<option value="cf">Cf. (confira)</option>
+<option value="seq">Et seq. (e seguintes)</option>
+</select>
+<div class="out" id="notaOut">Escolha uma expressão.</div>
+<button class="alt" data-copy="notaOut">Copiar</button>
+<p class="note">Expressões latinas só valem em nota de rodapé, na mesma página da citação. A exceção é apud, que também vale no texto.</p>
+</div>
+
+<div class="pane" id="pFich" hidden>
+<div class="obra"><span id="fichObra"></span><button class="alt" type="button" id="fichEdita">Editar dados da obra</button></div>
+<p class="note" style="margin-top:12px">Resumo curto da obra para o Apêndice. Cole o resumo ou a conclusão do artigo e o site sugere cada campo.</p>
+<label>Texto da obra (resumo, introdução ou conclusão)</label>
+<textarea id="fichFonte" style="min-height:120px" placeholder="Cole aqui o resumo (abstract) do artigo. Se você anexou um arquivo, o texto já vem preenchido."></textarea>
+<button id="montaFich" type="button">Montar fichamento</button>
+<div class="note" id="fichMsg"></div>
+<div class="row">
+<div><label>Nº do apêndice</label><input id="apN" type="number" min="1" value="1"></div>
+<div><label>Tema do seu trabalho (opcional)</label><input id="temaTrab" placeholder="ex.: IA generativa e raciocínio crítico"></div>
+</div>
+<label>Objetivo (o que a obra busca)</label><textarea id="fObj" style="min-height:60px"></textarea>
+<label>Metodologia (como foi feito)</label><textarea id="fMet" style="min-height:60px"></textarea>
+<label>Resultados (o que encontrou)</label><textarea id="fRes" style="min-height:60px"></textarea>
+<label>Contribuição (como ajuda o seu trabalho)</label><textarea id="fCon" style="min-height:60px"></textarea>
+<div class="tag">Fichamento pronto</div>
+<div class="out" id="fich"></div>
+<button class="alt" data-copy="fich">Copiar fichamento</button>
+</div>
+</section>
+
+<section class="card" id="stRef">
+<h2><span class="n">3</span>Referência</h2>
+<div class="out" id="ref">Anexe um arquivo ou preencha os dados da obra.</div>
 <div class="aviso" id="aviso" hidden></div>
 <button class="alt" data-copy="ref">Copiar referência</button> <button id="salvaRef" type="button">Salvar na lista</button>
 <div class="note" id="salvaMsg"></div>
 <p class="note">Sem local ou editora, o site usa [S. l.] e [s. n.]. Sem ano, indique um ano provável, como [2010?].</p>
+<details id="dados"><summary id="dadosSum">Editar dados da obra</summary>
 <h3 class="grp">Tipo, autoria e título</h3>
 <label>Tipo de documento</label>
 <select id="tipo">
@@ -290,72 +397,10 @@ body{overscroll-behavior-y:none}
 <div><label>URL (se for online)</label><input id="url"></div>
 <div><label>Data de acesso (vazio = hoje)</label><input id="acesso" placeholder="ex.: 6 nov. 2026"></div>
 </div>
+</details>
 </section>
-
-<section class="card">
-<h2>Fichamento</h2>
-<p class="note">Resumo estruturado e bem sucinto da obra, para os Apêndices (numeração em algarismos romanos).</p>
-<div class="row">
-<div><label>Nº do apêndice</label><input id="apN" type="number" min="1" value="1"></div>
-<div><label>Tema do seu trabalho (ajuda na contribuição)</label><input id="temaTrab" placeholder="ex.: IA generativa e raciocínio crítico"></div>
 </div>
-<label>Objetivo</label><textarea id="fObj" style="min-height:60px"></textarea>
-<label>Metodologia</label><textarea id="fMet" style="min-height:60px"></textarea>
-<label>Resultados</label><textarea id="fRes" style="min-height:60px"></textarea>
-<label>Contribuição</label><textarea id="fCon" style="min-height:60px"></textarea>
-<div class="tag">Fichamento pronto</div>
-<div class="out" id="fich">Anexe um arquivo e clique em “Analisar documento”.</div>
-<button class="alt" data-copy="fich">Copiar fichamento</button>
-</section>
 
-<section class="card">
-<h2>Citação direta e indireta</h2>
-<label>Texto da obra (selecione um trecho para citar)</label>
-<textarea id="texto" style="min-height:140px" placeholder="O texto do PDF aparece aqui. Você também pode colar um trecho."></textarea>
-<div class="row">
-<div><label>Página do trecho</label><input id="pag" placeholder="ex.: 45"></div>
-<div><label>Observação (só citação direta)</label><select id="obs"><option value="">Nenhuma</option><option>grifo nosso</option><option>grifo do autor</option><option>tradução nossa</option></select></div>
-</div>
-<p class="note">Em PDF, a página sugerida é a do arquivo; confira com a página impressa.</p>
-<div class="tag">Citação direta</div>
-<div class="out" id="direta">Selecione um trecho no campo acima.</div>
-<button class="alt" data-copy="direta">Copiar</button>
-<p class="note">Até 3 linhas: entre aspas, no parágrafo. Mais de 3 linhas: bloco recuado 4 cm, fonte menor, sem aspas. O site usa cerca de 40 palavras como limite.</p>
-<div class="tag">Citação indireta</div>
-<div class="out" id="indireta"></div>
-<button class="alt" data-copy="indireta">Copiar</button>
-</section>
-
-<section class="card">
-<h2>Citação de citação (apud)</h2>
-<p class="note">Use só quando não foi possível ler o original. Na lista de referências, entra apenas a obra que você consultou (a obra acima).</p>
-<div class="row">
-<div><label>Autor citado (que você não leu)</label><input id="apA"></div>
-<div><label>Ano da obra citada</label><input id="apY"></div>
-<div><label>Página na obra citada</label><input id="apP"></div>
-</div>
-<div class="out" id="apud">Preencha o autor citado para gerar.</div>
-<button class="alt" data-copy="apud">Copiar</button>
-</section>
-
-<section class="card">
-<h2>Nota de rodapé</h2>
-<label>Expressão</label>
-<select id="nota">
-<option value="">Escolha…</option>
-<option value="comp">1ª citação (referência completa)</option>
-<option value="ibid">Ibidem (mesma obra da nota anterior)</option>
-<option value="idem">Idem (mesmo autor, outra obra)</option>
-<option value="op">Op. cit. (obra já citada)</option>
-<option value="loc">Loc. cit. (mesma página já citada)</option>
-<option value="pas">Passim (várias passagens)</option>
-<option value="cf">Cf. (confira)</option>
-<option value="seq">Et seq. (e seguintes)</option>
-</select>
-<div class="out" id="notaOut">Escolha uma expressão.</div>
-<button class="alt" data-copy="notaOut">Copiar</button>
-<p class="note">Expressões latinas só valem em nota de rodapé, na mesma página da citação. A exceção é apud, que também vale no texto.</p>
-</section>
 <section class="card" id="pgLista">
 <h2>Minha lista de referências <span class="cnt" id="listaCount"></span></h2>
 <p class="note">As referências salvas ficam neste aparelho, em ordem alfabética, prontas para colar na seção Referências do trabalho.</p>
@@ -378,6 +423,8 @@ body{overscroll-behavior-y:none}
 <p class="note">A chave fica salva só neste navegador e é enviada diretamente à Anthropic. Não use em computador compartilhado.</p>
 <h3 class="grp" style="margin-top:26px">Aplicativo</h3>
 <button class="instalar" type="button" hidden>Instalar app</button>
+<button class="alt" id="diagApp" type="button">Verificar instalação</button>
+<div class="note" id="diagOut"></div>
 <p class="note">No Android e no computador, use o botão acima ou o menu do navegador. No iPhone, toque em Compartilhar e depois em Adicionar à Tela de Início. Depois de instalado, o site abre em tela cheia e funciona sem internet (a busca de DOI, ISBN e a IA precisam de conexão).</p>
 </section>
 <footer class="foot"><div class="by"><svg width="22" height="22"><use href="#mark"/></svg><span>by <b>Lucas Kenji</b></span></div><small>Baseado nas normas ABNT NBR 6023 e NBR 10520. Confira sempre com a norma e com seu orientador.</small></footer>
@@ -470,6 +517,7 @@ function S(narr){
 }
 const roman = n => { let r = ""; [[1000,"M"],[900,"CM"],[500,"D"],[400,"CD"],[100,"C"],[90,"XC"],[50,"L"],[40,"XL"],[10,"X"],[9,"IX"],[5,"V"],[4,"IV"],[1,"I"]].forEach(([v,s]) => { while(n >= v){ r += s; n -= v; } }); return r; };
 function fich(){
+  $("fichObra").innerHTML = val("titulo") ? "Obra: <b>" + esc(val("titulo").slice(0, 80)) + "</b>" : "Nenhuma obra definida. Preencha a página Referências ou anexe um arquivo.";
   const f = [["Referência", val("titulo") ? $("ref").innerHTML : ""], ["Objetivo", esc(val("fObj"))], ["Metodologia", esc(val("fMet"))], ["Resultados", esc(val("fRes"))], ["Contribuição", esc(val("fCon"))]];
   if(!f.some(x => x[1])){ $("fich").textContent = "Anexe um arquivo e clique em “Analisar documento”."; return; }
   $("fich").innerHTML = "<b>APÊNDICE " + roman(Math.max(1, parseInt(val("apN")) || 1)) + " – FICHAMENTO</b><br><br>" + f.map(x => "<b>" + x[0] + ":</b><br>" + (x[1] || "[…]")).join("<br><br>");
@@ -477,18 +525,20 @@ function fich(){
 function cit(){
   fich(); checar();
   const ano = val("ano") || "[ano]", pg = val("pag"), obs = val("obs"), T = $("texto");
-  const tr = T.value.slice(T.selectionStart, T.selectionEnd).replace(/\[p\. \d+\]/g,"").replace(/\s+/g," ").trim();
+  const tr = val("trecho").replace(/\s+/g, " ");
   const pp = pg ? ", p. " + pg : "", oo = obs ? ", " + obs : "";
+  const qual = (val("titulo") || autores().length) ? S(false) + ", " + (val("ano") || "[ano]") : "";
+  $("citTxt").innerHTML = qual ? "Citando: <b>" + esc(qual) + "</b>" + (val("ano") ? "" : " · falta o ano") : "Antes de citar, preencha o autor, o título e o ano da obra.";
   const par = S(false) + ", " + ano + pp + oo, nar = S(true) + " (" + ano + pp + oo + ")";
   if(tr){
     const longa = tr.split(" ").length > 40;
     $("direta").className = "out" + (longa ? " long" : "");
     $("direta").innerHTML = longa ? esc(tr) + " (" + esc(par) + ")." : "“" + esc(tr) + "”. (" + esc(par) + ").<br><br>Ou: Segundo " + esc(nar) + ", “" + esc(tr) + "”.";
-  } else { $("direta").className = "out"; $("direta").textContent = "Selecione um trecho no campo acima."; }
+  } else { $("direta").className = "out"; $("direta").textContent = "Cole um trecho no campo 1 para gerar a citação."; }
   $("indireta").innerHTML = "[ideia com suas palavras] (" + esc(S(false) + ", " + ano) + ").<br><br>Ou: Segundo " + esc(S(true)) + " (" + esc(ano) + "), [ideia com suas palavras].";
   const aa = val("apA");
   if(aa){
-    const ay = val("apY") || "[ano]", ap = val("apP") ? ", p. " + val("apP") : "", cons = S(false) + ", " + ano + pp;
+    const ay = val("apY") || "[ano]", ap = val("apP") ? ", p. " + val("apP") : "", cons = S(false) + ", " + ano + (val("apC") ? ", p. " + val("apC") : pp);
     $("apud").innerHTML = (tr ? "“" + esc(tr) + "”" : "[trecho]") + ". (" + esc(aa.toUpperCase() + ", " + ay + ap + " apud " + cons) + ").<br><br>Ou: Segundo " + esc(cap(aa) + " (" + ay + ap + " apud " + cons + ")") + " " + (tr ? "“" + esc(tr) + "”" : "[trecho]") + ".";
   } else $("apud").textContent = "Preencha o autor citado para gerar.";
   const p = pg || "__", sb = esc(S(false)), n = val("nota");
@@ -505,8 +555,12 @@ function cit(){
   $("notaOut").innerHTML = N[n] || "Escolha uma expressão.";
 }
 function sugerirPagina(){
-  const t = $("texto"), m = [...t.value.slice(0, t.selectionStart).matchAll(/\[p\. (\d+)\]/g)];
-  if(m.length && t.selectionEnd > t.selectionStart) $("pag").value = m[m.length-1][1];
+  const t = $("texto");
+  if(t.selectionEnd > t.selectionStart){
+    const m = [...t.value.slice(0, t.selectionStart).matchAll(/\[p\. (\d+)\]/g)];
+    if(m.length) $("pag").value = m[m.length-1][1];
+    $("trecho").value = t.value.slice(t.selectionStart, t.selectionEnd).replace(/\[p\. \d+\]/g, "").replace(/\s+/g, " ").trim();
+  }
   cit();
 }
 ["mouseup","keyup","select","touchend"].forEach(e => $("texto").addEventListener(e, () => setTimeout(sugerirPagina, 30)));
@@ -585,9 +639,10 @@ const ROT = {autores:"autor", titulo:"título", local:"local", editora:"editora"
 function checar(){
   const a = $("aviso");
   campos.forEach(c => $(c).classList.remove("falta"));
-  if(!val("titulo")){ a.hidden = true; return; }
+  if(!val("titulo")){ a.hidden = true; $("dadosSum").textContent = "Preencher dados da obra"; return; }
   const falta = REQ[val("tipo")].filter(c => !val(c));
   falta.forEach(c => $(c).classList.add("falta"));
+  $("dadosSum").textContent = falta.length ? "Editar dados da obra (faltam " + falta.length + ")" : "Editar dados da obra";
   a.hidden = false;
   if(falta.length){ a.className = "aviso warn"; a.textContent = "Faltam: " + falta.map(c => ROT[c]).join(", ") + "." + (falta.includes("autores") ? " Sem autor, a entrada será pelo título." : ""); }
   else { a.className = "aviso ok"; a.textContent = "✓ Referência completa. Confira os dados com o documento."; }
@@ -622,6 +677,104 @@ addEventListener("beforeinstallprompt", e => { e.preventDefault(); evInst = e; d
 addEventListener("appinstalled", () => document.querySelectorAll(".instalar").forEach(b => b.hidden = true));
 document.querySelectorAll(".instalar").forEach(b => b.onclick = async () => { if(!evInst) return; evInst.prompt(); await evInst.userChoice; evInst = null; document.querySelectorAll(".instalar").forEach(x => x.hidden = true); });
 if("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && !window.claude){ navigator.serviceWorker.register("sw.js").catch(() => {}); }
+function resumoDe(txt){
+  const t = txt.replace(/\[p\. \d+\]/g, " ").replace(/\s+/g, " ");
+  const m = t.match(/(?:resumo|abstract)[:\s.\-–—]+(.{200,2500}?)(?=\s(?:palavras[- ]chave|keywords?|abstract|resumen|introdu[cç][aã]o|1\s+introdu)|$)/i);
+  return m ? m[1].trim() : t.slice(0, 3000);
+}
+function fonteFich(corpo){
+  const t = corpo.replace(/\[p\. \d+\]/g, " ").replace(/\s+/g, " ");
+  const ms = [...t.matchAll(/(considera[cç][oõ]es finais|conclus[aã]o|conclusions?)/gi)];
+  const fim = ms.length ? t.slice(ms[ms.length-1].index, ms[ms.length-1].index + 1800) : "";
+  return (resumoDe(corpo) + (fim ? "\n\n" + fim : "")).slice(0, 6000);
+}
+function fichaBase2(txt){
+  const fr = txt.replace(/\[p\. \d+\]/g, " ").replace(/\s+/g, " ").split(/(?<=[.!?])\s+/).map(x => x.trim()).filter(x => x.length > 30 && x.length < 500);
+  const usados = new Set(), corta = x => x.length > 320 ? x.slice(0, 317) + "..." : x;
+  const pega = (re, ultimo) => {
+    const idx = fr.map((x, k) => k).filter(k => !usados.has(k) && re.test(fr[k]));
+    if(!idx.length) return "";
+    const k = ultimo ? idx[idx.length-1] : idx[0]; usados.add(k); return corta(fr[k]);
+  };
+  const objetivo = pega(/objetiv|(este|presente|nosso)\s+(estudo|trabalho|artigo|pesquisa)|buscou|visa\b|propõe|propôs|pretende|\baim\b|purpose|investigat/i) || (fr[0] ? (usados.add(0), corta(fr[0])) : "");
+  const metodologia = pega(/metodolog|método|abordagem|amostra|participantes|coleta de dados|questionário|entrevista|revisão (sistemática|bibliográfica|de literatura)|pesquisa (qualitativa|quantitativa|bibliográfica|documental|exploratória|descritiva)|estudo de caso|análise de conteúdo|delineamento|\bmethod|\bsample|survey|interview/i);
+  const resultados = pega(/resultados?|results?|constat|observ|verific|identific|evidenc|demonstr|apontam|indicam|mostram|revelam|\bfound|showed/i);
+  const contribuicao = pega(/conclu|contribu|implica[cç]|sugere|recomend|conclusion|implications|pode (auxiliar|contribuir)/i, true);
+  return {objetivo, metodologia, resultados, contribuicao};
+}
+const promptFich = fonte => "Faça um fichamento BEM SUCINTO da obra abaixo, para servir de base. Responda SOMENTE com JSON, sem crases, com as chaves: objetivo (1 a 2 frases: o que a obra busca), metodologia (1 a 2 frases: tipo de estudo, amostra e instrumentos; se for obra teórica, diga a abordagem), resultados (1 a 2 frases com os principais achados ou argumentos, com números se houver), contribuicao (1 a 2 frases: como a obra pode fundamentar um trabalho acadêmico" + (val("temaTrab") ? " sobre o tema: " + val("temaTrab") : "") + "). Use só o que consta no texto. Não invente.\n\n" + fonte.slice(0, 14000);
+$("montaFich").onclick = async () => {
+  const m = $("fichMsg"), fonte = (val("fichFonte") || $("texto").value.replace(/\[p\. \d+\]/g, " ")).trim();
+  if(!fonte){ m.textContent = "Cole um texto no campo 1 ou anexe um arquivo na página Anexar Artigo."; return; }
+  m.textContent = "Montando…";
+  let f = null, via = "sugestão automática por palavras-chave";
+  try{ const sample = await getSample(); if(sample){ const r = await sample(promptFich(fonte), {}); f = JSON.parse(r.text.replace(/```json|```/g, "").trim()); via = "IA"; } }catch(e){ f = null; }
+  if(!f) f = fichaBase2(fonte);
+  $("fObj").value = f.objetivo || ""; $("fMet").value = f.metodologia || ""; $("fRes").value = f.resultados || ""; $("fCon").value = f.contribuicao || "";
+  fich();
+  const vazios = [["objetivo", f.objetivo], ["metodologia", f.metodologia], ["resultados", f.resultados], ["contribuição", f.contribuicao]].filter(x => !x[1]).map(x => x[0]);
+  m.textContent = "Pronto (" + via + "). " + (vazios.length ? "Não encontrei: " + vazios.join(", ") + ". Preencha à mão." : "Revise os campos antes de usar.");
+};
+document.querySelectorAll("#segOp button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("#segOp button").forEach(x => x.classList.toggle("on", x === b));
+  document.querySelectorAll("#stOpcoes .pane").forEach(p => p.hidden = p.id !== b.dataset.p);
+});
+$("diagApp").onclick = async () => {
+  const o = $("diagOut"), L = [], ok = (b, t) => L.push((b ? "✓ " : "✗ ") + t);
+  ok(location.protocol === "https:" || location.hostname === "localhost", "Endereço seguro (https)");
+  const lk = document.querySelector('link[rel="manifest"]'); let mu = null;
+  if(lk.href.startsWith("blob:")) L.push("• Manifesto e ícones embutidos no index (arquivo único)");
+  try{ const r = await fetch(lk.href, {cache:"no-store"}); mu = r.ok ? await r.json() : null; ok(!!mu, "Arquivo manifest.webmanifest encontrado" + (r.ok ? "" : " (erro " + r.status + ")")); }catch(e){ ok(false, "Arquivo manifest.webmanifest não encontrado"); }
+  if(mu){ for(const ic of (mu.icons || []).filter(i => /png/.test(i.type))){ try{ const r = await fetch(new URL(ic.src, lk.href), {cache:"no-store"}); ok(r.ok, "Ícone " + ic.src); }catch(e){ ok(false, "Ícone " + ic.src + " não encontrado"); } } }
+  try{ const reg = await navigator.serviceWorker.getRegistration(); ok(!!reg, "Modo offline (sw.js registrado; sem ele o app instala, mas não abre sem internet)"); }catch(e){ ok(false, "Service worker indisponível"); }
+  L.push("• " + (matchMedia("(display-mode: standalone)").matches ? "Aberto como app instalado" : "Aberto no navegador (normal antes de instalar)"));
+  o.innerHTML = L.map(x => "<div>" + x + "</div>").join("") + '<div class="note">Se algum item falhar, envie ao GitHub todos os arquivos do zip, na mesma pasta do index.html, aguarde 1 a 2 minutos e recarregue a página duas vezes.</div>';
+};
+const ICON_SVG = "<svg xmlns='http://www.w3.org/2000/svg' width='192' height='192' viewBox='0 0 120 120'><rect width='120' height='120' rx='28' fill='#1E3A8A'/><g transform='translate(15 10) scale(.75)' fill='none' stroke='#fff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'><path d='M34 12H66L84 30V72H34Z'/><path d='M66 12V30H84'/><path d='M44 42H74M44 52H74M44 62H64' stroke-width='5'/><path d='M10 78Q40 78 60 100Q80 78 110 78'/><path d='M16 89Q42 87 60 107Q78 87 104 89' stroke='#93C5FD' stroke-width='5'/></g></svg>";
+async function manifestoInline(){
+  try{
+    const a = await fetch("manifest.webmanifest", {cache:"no-store"}), b = await fetch("icon-192.png", {cache:"no-store"});
+    if(a.ok && b.ok) return;
+  }catch(e){}
+  try{
+    const img = new Image(); img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(ICON_SVG); await img.decode();
+    const png = (n, cheio) => { const c = document.createElement("canvas"); c.width = c.height = n; const x = c.getContext("2d"); if(cheio){ x.fillStyle = "#1E3A8A"; x.fillRect(0, 0, n, n); x.drawImage(img, n*.15, n*.15, n*.7, n*.7); } else x.drawImage(img, 0, 0, n, n); return c.toDataURL("image/png"); };
+    const base = location.href.split("#")[0].split("?")[0];
+    const man = {name:"Gerador de Referências ABNT", short_name:"Refs ABNT", description:"Referências, citações, notas e fichamentos conforme a ABNT.", lang:"pt-BR", id:base, start_url:base, scope:base.replace(/[^\/]*$/, ""), display:"standalone", background_color:"#F8FAFC", theme_color:"#1E3A8A",
+      icons:[{src:png(192), sizes:"192x192", type:"image/png"}, {src:png(512), sizes:"512x512", type:"image/png"}, {src:png(512, true), sizes:"512x512", type:"image/png", purpose:"maskable"}]};
+    document.querySelector('link[rel="manifest"]').href = URL.createObjectURL(new Blob([JSON.stringify(man)], {type:"application/manifest+json"}));
+    const ap = document.querySelector('link[rel="apple-touch-icon"]'); if(ap) ap.href = png(180, true);
+  }catch(e){}
+}
+manifestoInline();
+function blocoPg(n, tx){
+  const fr = tx.replace(/\s+/g, " ").trim().split(/(?<=[.!?])\s+/), ps = [];
+  for(let i = 0; i < fr.length; i += 3) ps.push(fr.slice(i, i + 3).join(" "));
+  return '<div class="pg"' + (n ? ' data-n="' + n + '"><div class="pgn">Página ' + n + '</div>' : '>') + ps.map(p => "<p>" + esc(p) + "</p>").join("") + "</div>";
+}
+function desenhaLeitor(){
+  const L = $("leitor"), t = $("texto").value.trim();
+  try{ if(window.CSS && CSS.highlights) CSS.highlights.clear(); }catch(e){}
+  if(!t){ L.innerHTML = '<div class="vazio">Anexe um arquivo no passo 1 para ler o texto aqui. Você também pode colar o trecho no campo Ajustes, mais abaixo.</div>'; return; }
+  const partes = ("\n\n" + t).split(/\n\n\[p\. (\d+)\]\n/);
+  let h = "";
+  if(partes.length > 1){ for(let i = 1; i < partes.length; i += 2) h += blocoPg(partes[i], partes[i+1] || ""); } else h = blocoPg("", t);
+  L.innerHTML = h;
+}
+let selT = "", selTimer;
+document.addEventListener("selectionchange", () => {
+  clearTimeout(selTimer);
+  selTimer = setTimeout(() => {
+    const sel = getSelection(); if(!sel || !sel.rangeCount || sel.isCollapsed) return;
+    const r = sel.getRangeAt(0); if(!$("leitor").contains(r.commonAncestorContainer)) return;
+    const t = sel.toString().replace(/\s+/g, " ").trim(); if(!t || t === selT) return; selT = t;
+    const el = r.startContainer.nodeType === 1 ? r.startContainer : r.startContainer.parentElement, pg = el && el.closest(".pg");
+    $("trecho").value = t; if(pg && pg.dataset.n) $("pag").value = pg.dataset.n;
+    try{ if(window.CSS && CSS.highlights) CSS.highlights.set("cit", new Highlight(r.cloneRange())); }catch(e){}
+    cit(); $("leitorMsg").textContent = "✓ Trecho marcado. A citação está pronta logo abaixo.";
+  }, 450);
+});
+desenhaLeitor();
 async function crossref(doi){
   const r = await fetch("https://api.crossref.org/works/" + encodeURIComponent(doi)); if(!r.ok) throw new Error("DOI não encontrado");
   const m = (await r.json()).message, a = (m.author || []).map(x => x.family ? x.family + ", " + (x.given || "") : (x.name || "")).map(x => x.trim());
@@ -650,21 +803,23 @@ async function modoBasico(info){
   $("autores").value = (d.autores || []).join("\n");
   campos.filter(c => c !== "autores").forEach(c => { if(d[c] != null) $(c).value = d[c]; });
   montar();
-  const b = corpo ? fichaBase(corpo) : {};
+  const b = fichaBase2($("fichFonte").value || corpo);
   $("fObj").value = b.objetivo || ""; $("fMet").value = b.metodologia || ""; $("fRes").value = b.resultados || ""; $("fCon").value = ""; fich();
-  msg.textContent = "Modo básico (" + via + "): confira e complete os campos. Com uma chave de API em Configurações, a análise com IA preenche tudo.";
+  msg.textContent = "Modo básico (" + via + "): confira e complete os campos. Com uma chave de API em Configurações, a análise com IA preenche tudo."; $("stOpcoes").scrollIntoView({behavior:"smooth"});
 }
 $("analisar").addEventListener("click", async () => {
   const f = $("arq").files[0], msg = $("msg");
   if(!f){ msg.textContent = "Escolha um arquivo primeiro."; return; }
   msg.textContent = "Lendo o arquivo…";
   try{
-    const sample = await getSample(); let conteudo = "", opts = {}, info = {};
+    const sample = await getSample(); let conteudo = "", opts = {}, info = {}; $("texto").value = "";
     if(f.type === "application/pdf" || /\.pdf$/i.test(f.name)){ const r = await lerPdf(f); conteudo = r.meta; info = r.info; $("texto").value = r.tudo; }
     else if(f.type.startsWith("image/")){
       if(!sample){ msg.textContent = "Foto exige a chave de API em Configurações. Use PDF ou TXT, ou preencha manualmente."; return; }
       opts.images = [f]; conteudo = "(a imagem anexada é a página de rosto, capa ou ficha catalográfica)";
     } else { const t = await f.text(); conteudo = t.slice(0,7000); $("texto").value = t; }
+    desenhaLeitor();
+    $("fichFonte").value = fonteFich($("texto").value);
     if(!sample){ await modoBasico(info); return; }
     msg.textContent = "Analisando…";
     const prompt = "Extraia os dados bibliográficos da obra abaixo, conforme constam no documento. Responda SOMENTE com JSON, sem crases, com as chaves: tipo (\"livro\", \"cap\" para capítulo, \"artigo\" de periódico, \"jornal\", \"diss\" para monografia, dissertação, tese ou TCC, \"evento\" ou \"site\"), autores (lista de strings \"Sobrenome, Nome\"; instituição como nome completo sem vírgula; [] se não houver autor), titulo, subtitulo, edicao (só o número, ou texto como \"2. ed., rev. e atual.\"), local (cidade), editora (sem Ltda., S.A.), ano, mes, periodico, volume, numero, secao, paginas (ex.: 10-25), doi, modal (\"Monografia\", \"Dissertação\", \"Tese\" ou \"Trabalho de conclusão de curso\"), grau (curso, ex.: Mestrado em Educação), instituicao, tituloLivro (só capítulo), evento (ex.: CONGRESSO X, 7., 2014, Vitória), veiculo (nome do site), url. Use \"\" quando não encontrar. Não invente.\n\n" + conteudo;
@@ -687,11 +842,11 @@ $("analisar").addEventListener("click", async () => {
     const fj = JSON.parse(r2.text.replace(/```json|```/g, "").trim());
     $("fObj").value = fj.objetivo || ""; $("fMet").value = fj.metodologia || ""; $("fRes").value = fj.resultados || ""; $("fCon").value = fj.contribuicao || "";
     fich();
-    msg.textContent = "Pronto! Veja as abas Referência e Fichamento e confira antes de usar.";
+    msg.textContent = "Pronto! Role a página: escolha o que montar (passo 2) e confira a referência no fim (passo 3)."; $("stOpcoes").scrollIntoView({behavior:"smooth"});
   }catch(e){ msg.textContent = "Não consegui analisar (" + ((e && e.message) || "erro") + "). Preencha manualmente."; }
 });
-const secs = [...document.querySelectorAll("main > section.card")];
-const paginas = [["Início",[$("pgInicio")]],["Referências",[secs[1]]],["Anexar Artigo",[secs[0],secs[2]]],["Citações",[secs[3],secs[4]]],["Notas de Rodapé",[secs[5]]],["Lista",[secs[6]]],["Configurações",[secs[7]]]];
+const secs = ["pgInicio","pgGerar","pgLista","pgCfg"].map(id => $(id));
+const paginas = [["Início",[secs[0]]],["Gerar",[secs[1]]],["Lista",[secs[2]]],["Configurações",[secs[3]]]];
 const menu = $("menu"), hist = []; let atual = -1;
 function fechaMenu(){ menu.classList.remove("open"); $("burger").setAttribute("aria-expanded", "false"); $("scrim").hidden = true; }
 function ir(i, vol){
@@ -707,8 +862,10 @@ paginas.forEach((p,i) => { const b = document.createElement("button"); b.type = 
 $("burger").onclick = () => { const abre = !menu.classList.contains("open"); menu.classList.toggle("open", abre); $("burger").setAttribute("aria-expanded", String(abre)); $("scrim").hidden = !abre; };
 $("scrim").onclick = fechaMenu;
 $("voltar").onclick = () => { if(hist.length) ir(hist.pop(), true); };
-$("comecar").onclick = () => ir(2);
-$("comecar2").onclick = () => ir(2);
+$("comecar").onclick = () => ir(1);
+$("comecar2").onclick = () => ir(1);
+const abreDados = () => { $("dados").open = true; $("dados").scrollIntoView({behavior:"smooth", block:"center"}); };
+$("citEdita").onclick = abreDados; $("fichEdita").onclick = abreDados; $("semArq").onclick = abreDados;
 $("comoFunciona").onclick = () => $("como").scrollIntoView({behavior:"smooth"});
 const IC = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">';
 const MOON = IC + '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
