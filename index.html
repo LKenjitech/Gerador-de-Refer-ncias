@@ -203,6 +203,7 @@ summary{cursor:pointer;color:var(--ac);font-weight:600;font-size:14px}
 .reader ::selection{background:#BFDBFE;color:#0F172A}
 ::highlight(cit){background:#FDE68A;color:#1C2321}
 #msg{margin-bottom:2px}
+.upd{display:block;width:100%;max-width:760px;margin:0 auto 12px;background:var(--ac);color:#fff;border-radius:10px;padding:12px}
 </style>
 </head>
 <body>
@@ -216,6 +217,7 @@ summary{cursor:pointer;color:var(--ac);font-weight:600;font-size:14px}
 <div class="scrim" id="scrim" hidden></div>
 <main>
 <div class="bar"><button class="alt" id="voltar" type="button" hidden>← Voltar</button></div>
+<button class="upd" id="novaVersao" type="button" hidden>Há uma versão nova do site. Toque para atualizar.</button>
 <div id="pgInicio" class="landing">
 <section class="lhero">
 <div>
@@ -263,6 +265,10 @@ summary{cursor:pointer;color:var(--ac);font-weight:600;font-size:14px}
 <input type="file" id="arq" accept=".pdf,.txt,image/*">
 <button id="analisar" type="button">Analisar documento</button> <button class="alt" id="semArq" type="button">Prefiro preencher à mão</button>
 <div id="msg"></div>
+<details style="margin-top:12px"><summary>O arquivo não funcionou? Cole o texto do artigo</summary>
+<textarea id="colado" style="min-height:120px" placeholder="Abra o PDF, copie o texto (principalmente a primeira página) e cole aqui"></textarea>
+<button class="alt" id="usaColado" type="button">Montar a partir do texto colado</button>
+</details>
 </section>
 
 <section class="card" id="stOpcoes">
@@ -425,6 +431,7 @@ summary{cursor:pointer;color:var(--ac);font-weight:600;font-size:14px}
 <button class="instalar" type="button" hidden>Instalar app</button>
 <button class="alt" id="diagApp" type="button">Verificar instalação</button>
 <div class="note" id="diagOut"></div>
+<p class="note">Versão do site: <b id="verTxt"></b></p>
 <p class="note">No Android e no computador, use o botão acima ou o menu do navegador. No iPhone, toque em Compartilhar e depois em Adicionar à Tela de Início. Depois de instalado, o site abre em tela cheia e funciona sem internet (a busca de DOI, ISBN e a IA precisam de conexão).</p>
 </section>
 <footer class="foot"><div class="by"><svg width="22" height="22"><use href="#mark"/></svg><span>by <b>Lucas Kenji</b></span></div><small>Baseado nas normas ABNT NBR 6023 e NBR 10520. Confira sempre com a norma e com seu orientador.</small></footer>
@@ -575,10 +582,12 @@ document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click"
 }));
 
 async function lerPdf(file){
+  if(typeof pdfjsLib === "undefined") throw new Error("a biblioteca de PDF não carregou; verifique a internet e recarregue");
   pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
   const pdf = await pdfjsLib.getDocument({data: await file.arrayBuffer()}).promise;
   const n = Math.min(pdf.numPages, 60); let tudo = "", ini = "", fimT = "";
   for(let i = 1; i <= n; i++){
+    $("msg").textContent = "Lendo página " + i + " de " + n + "…";
     const c = await (await pdf.getPage(i)).getTextContent();
     const tx = c.items.map(x => x.str).join(" ");
     tudo += "\n\n[p. " + i + "]\n" + tx;
@@ -775,6 +784,26 @@ document.addEventListener("selectionchange", () => {
   }, 450);
 });
 desenhaLeitor();
+const VERSAO = "2026-11-13";
+$("verTxt").textContent = VERSAO;
+async function checaVersao(){
+  try{
+    const r = await fetch("index.html?chk=" + Date.now(), {cache:"no-store"}); if(!r.ok) return;
+    const m = (await r.text()).match(/const VERSAO = "([^"]+)"/);
+    if(m && m[1] !== VERSAO) $("novaVersao").hidden = false;
+  }catch(e){}
+}
+$("novaVersao").onclick = async () => {
+  try{ const rs = await navigator.serviceWorker.getRegistrations(); await Promise.all(rs.map(x => x.unregister())); const ks = await caches.keys(); await Promise.all(ks.map(k => caches.delete(k))); }catch(e){}
+  location.reload();
+};
+if(/^https?:$/.test(location.protocol)) checaVersao();
+$("usaColado").onclick = async () => {
+  const t = $("colado").value.trim(), msg = $("msg");
+  if(!t){ msg.textContent = "Cole o texto primeiro."; return; }
+  $("texto").value = t; desenhaLeitor(); $("fichFonte").value = fonteFich(t);
+  await modoBasico({});
+};
 async function crossref(doi){
   const r = await fetch("https://api.crossref.org/works/" + encodeURIComponent(doi)); if(!r.ok) throw new Error("DOI não encontrado");
   const m = (await r.json()).message, a = (m.author || []).map(x => x.family ? x.family + ", " + (x.given || "") : (x.name || "")).map(x => x.trim());
@@ -791,20 +820,44 @@ function fichaBase(txt){
     resultados: pega(/resultados|results|constat|observou|verificou|concluiu|conclusão/i)
   };
 }
+function cabecalho(raw){
+  const t = raw.replace(/\s+/g, " ");
+  const h = t.match(/([A-ZÀ-ÚÇ][A-ZÀ-ÚÇ \-]{2,40}?)\s+V\.?\s*(\d+)\s*,?\s*N\.?\s*(\d+)\s*[–—-]\s*([A-Za-zÇç]{3,5}\.?(?:\s*[-–\/]\s*[A-Za-zÇç]{3,5}\.?)?)\s*(\d{4})/);
+  if(!h) return null;
+  const nums = [...t.matchAll(/_{5,}\s*(\d{1,4})\b/g)].map(m => +m[1]);
+  const c = {periodico: cap(h[1].trim()), volume: h[2], numero: h[3], mes: h[4].toLowerCase().replace(/\s*[-–\/]\s*/, "/").replace(/\b([a-zç]{3})(?=\/|$)/g, "$1."), ano: h[5],
+    paginas: nums.length > 1 ? Math.min(...nums) + "-" + Math.max(...nums) : (nums[0] ? String(nums[0]) : ""), titulo: "", autores: []};
+  const p1 = (t.split(/\[p\. 2\]/)[0] || t).replace(/\[p\. \d+\]/g, " ");
+  const m = p1.match(/_{5,}\s*\d+\s*\.?\s*([A-ZÀ-ÚÇ0-9][A-ZÀ-ÚÇ0-9 ,:;\-–?!]+?)\*?\s+(?=[A-ZÀ-Ú][a-zà-ú]+\s)([A-ZÀ-Ú][a-zà-ú]+(?:\s+(?:d[aeo]s?|[A-ZÀ-Ú][a-zà-ú\.]+)){1,3})\*+/);
+  if(m){ const tt = m[1].trim().toLowerCase(); c.titulo = tt.charAt(0).toUpperCase() + tt.slice(1); c.autores = [inverte(m[2])]; }
+  return c;
+}
 async function modoBasico(info){
   const msg = $("msg"), corpo = $("texto").value.replace(/\[p\. \d+\]/g, "").trim();
   msg.textContent = "Buscando os dados da obra…";
   const inv = x => { if(x.includes(",")) return x; const w = x.split(/\s+/); return w.length > 1 ? w.pop() + ", " + w.join(" ") : x; };
   const doi = (corpo.slice(0, 20000).match(/10\.\d{4,9}\/[^\s"<>)\]]+/) || [])[0];
-  let d = {titulo: info.Title || "", autores: info.Author ? info.Author.split(/;| and /).map(x => x.trim()).filter(Boolean).map(inv) : []}, via = "metadados do PDF";
+  let d = {titulo: (info.Title && !/^microsoft|\.docx?$|untitled|sem t[ií]tulo/i.test(info.Title)) ? info.Title : "", autores: []}, via = "leitura do arquivo";
   if(doi){ try{ d = await crossref(doi.replace(/[.,;)]+$/, "")); via = "DOI " + doi; }catch(e){} }
   else { const mi = corpo.slice(0, 20000).match(/ISBN(?:-1[03])?:?\s*([0-9][0-9\- ]{8,16}[0-9Xx])/i); if(mi){ try{ d = await porIsbn(mi[1]); via = "ISBN " + mi[1]; }catch(e){} } }
+  const c = cabecalho($("texto").value);
+  if(c){
+    if(via.indexOf("DOI") !== 0){ d.titulo = c.titulo || d.titulo; if(c.autores.length) d.autores = c.autores; }
+    d.tipo = "artigo";
+    ["periodico","volume","numero","mes","ano","paginas"].forEach(k => { if(!d[k]) d[k] = c[k]; });
+    via += " + cabeçalho do periódico";
+  }
   if(d.tipo) $("tipo").value = d.tipo;
   $("autores").value = (d.autores || []).join("\n");
   campos.filter(c => c !== "autores").forEach(c => { if(d[c] != null) $(c).value = d[c]; });
   montar();
   const b = fichaBase2($("fichFonte").value || corpo);
   $("fObj").value = b.objetivo || ""; $("fMet").value = b.metodologia || ""; $("fRes").value = b.resultados || ""; $("fCon").value = ""; fich();
+  if(!val("titulo")){
+    $("dados").open = true;
+    msg.textContent = "Não consegui identificar os dados deste arquivo (sem DOI, ISBN ou cabeçalho de periódico). Preencha em “Editar dados da obra”, abaixo da referência, ou use uma chave de API em Configurações para a leitura com IA.";
+    $("stRef").scrollIntoView({behavior:"smooth"}); return;
+  }
   msg.textContent = "Modo básico (" + via + "): confira e complete os campos. Com uma chave de API em Configurações, a análise com IA preenche tudo."; $("stOpcoes").scrollIntoView({behavior:"smooth"});
 }
 $("analisar").addEventListener("click", async () => {
